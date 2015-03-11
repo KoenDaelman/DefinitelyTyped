@@ -119,6 +119,8 @@ declare module joint {
             }
             class Image extends Generic {
             }
+            class Path extends Generic{
+            }
         }
     }
 
