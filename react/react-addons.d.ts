@@ -1,4 +1,4 @@
-// Type definitions for ReactWithAddons v0.13.0 RC2 (external module)
+// Type definitions for ReactWithAddons v0.13.1 (external module)
 // Project: http://facebook.github.io/react/
 // Definitions by: Asana <https://asana.com>, AssureSign <http://www.assuresign.com>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -131,7 +131,7 @@ declare module "react/addons" {
 
     // Base component for plain JS classes
     class Component<P, S> implements ComponentLifecycle<P, S> {
-        constructor(props: P, context: any);
+        constructor(props?: P, context?: any);
         setState(f: (prevState: S, props: P) => S, callback?: () => any): void;
         setState(state: S, callback?: () => any): void;
         forceUpdate(): void;
@@ -234,6 +234,10 @@ declare module "react/addons" {
         type: string;
     }
 
+    interface DragEvent extends SyntheticEvent {
+        dataTransfer: DataTransfer;
+    }
+
     interface ClipboardEvent extends SyntheticEvent {
         clipboardData: DataTransfer;
     }
@@ -308,6 +312,7 @@ declare module "react/addons" {
         (event: E): void;
     }
 
+    interface DragEventHandler extends EventHandler<DragEvent> {}
     interface ClipboardEventHandler extends EventHandler<ClipboardEvent> {}
     interface KeyboardEventHandler extends EventHandler<KeyboardEvent> {}
     interface FocusEventHandler extends EventHandler<FocusEvent> {}
@@ -341,14 +346,14 @@ declare module "react/addons" {
         onSubmit?: FormEventHandler;
         onClick?: MouseEventHandler;
         onDoubleClick?: MouseEventHandler;
-        onDrag?: MouseEventHandler;
-        onDragEnd?: MouseEventHandler;
-        onDragEnter?: MouseEventHandler;
-        onDragExit?: MouseEventHandler;
-        onDragLeave?: MouseEventHandler;
-        onDragOver?: MouseEventHandler;
-        onDragStart?: MouseEventHandler;
-        onDrop?: MouseEventHandler;
+        onDrag?: DragEventHandler;
+        onDragEnd?: DragEventHandler;
+        onDragEnter?: DragEventHandler;
+        onDragExit?: DragEventHandler;
+        onDragLeave?: DragEventHandler;
+        onDragOver?: DragEventHandler;
+        onDragStart?: DragEventHandler;
+        onDrop?: DragEventHandler;
         onMouseDown?: MouseEventHandler;
         onMouseEnter?: MouseEventHandler;
         onMouseLeave?: MouseEventHandler;
@@ -368,14 +373,18 @@ declare module "react/addons" {
         };
     }
 
+    // This interface is not complete. Only properties accepting
+    // unitless numbers are listed here (see CSSProperty.js in React)
     interface CSSProperties {
+        boxFlex?: number;
+        boxFlexGroup?: number;
         columnCount?: number;
         flex?: number | string;
         flexGrow?: number;
         flexShrink?: number;
-        fontWeight?: number;
+        fontWeight?: number | string;
         lineClamp?: number;
-        lineHeight?: number;
+        lineHeight?: number | string;
         opacity?: number;
         order?: number;
         orphans?: number;
@@ -386,6 +395,7 @@ declare module "react/addons" {
         // SVG-related properties
         fillOpacity?: number;
         strokeOpacity?: number;
+        strokeWidth?: number;
     }
 
     interface HTMLAttributes extends DOMAttributes {
@@ -501,18 +511,18 @@ declare module "react/addons" {
     interface SVGAttributes extends DOMAttributes {
         ref?: string | ((component: SVGComponent) => void);
 
-        cx?: SVGLength | SVGAnimatedLength;
-        cy?: any;
+        cx?: number | string;
+        cy?: number | string;
         d?: string;
-        dx?: SVGLength | SVGAnimatedLength;
-        dy?: SVGLength | SVGAnimatedLength;
-        fill?: any; // SVGPaint | string
+        dx?: number | string;
+        dy?: number | string;
+        fill?: string;
         fillOpacity?: number | string;
         fontFamily?: string;
         fontSize?: number | string;
-        fx?: SVGLength | SVGAnimatedLength;
-        fy?: SVGLength | SVGAnimatedLength;
-        gradientTransform?: SVGTransformList | SVGAnimatedTransformList;
+        fx?: number | string;
+        fy?: number | string;
+        gradientTransform?: string;
         gradientUnits?: string;
         markerEnd?: string;
         markerMid?: string;
@@ -523,27 +533,27 @@ declare module "react/addons" {
         patternUnits?: string;
         points?: string;
         preserveAspectRatio?: string;
-        r?: SVGLength | SVGAnimatedLength;
-        rx?: SVGLength | SVGAnimatedLength;
-        ry?: SVGLength | SVGAnimatedLength;
+        r?: number | string;
+        rx?: number | string;
+        ry?: number | string;
         spreadMethod?: string;
-        stopColor?: any; // SVGColor | string
+        stopColor?: string;
         stopOpacity?: number | string;
-        stroke?: any; // SVGPaint
+        stroke?: string;
         strokeDasharray?: string;
         strokeLinecap?: string;
         strokeOpacity?: number | string;
-        strokeWidth?: SVGLength | SVGAnimatedLength;
+        strokeWidth?: number | string;
         textAnchor?: string;
-        transform?: SVGTransformList | SVGAnimatedTransformList;
+        transform?: string;
         version?: string;
         viewBox?: string;
-        x1?: SVGLength | SVGAnimatedLength;
-        x2?: SVGLength | SVGAnimatedLength;
-        x?: SVGLength | SVGAnimatedLength;
-        y1?: SVGLength | SVGAnimatedLength;
-        y2?: SVGLength | SVGAnimatedLength
-        y?: SVGLength | SVGAnimatedLength;
+        x1?: number | string;
+        x2?: number | string;
+        x?: number | string;
+        y1?: number | string;
+        y2?: number | string
+        y?: number | string;
     }
 
     //
@@ -904,6 +914,8 @@ declare module "react/addons" {
         findRenderedComponentWithType<C extends Component<any, any>>(
             tree: Component<any, any>,
             type: ComponentClass<any>): C;
+
+        createRenderer(): ShallowRenderer;
     }
 
     interface SyntheticEventData {
@@ -979,6 +991,12 @@ declare module "react/addons" {
         touchMove: EventSimulator;
         touchStart: EventSimulator;
         wheel: EventSimulator;
+    }
+
+    class ShallowRenderer {
+        getRenderOutput<C extends Component<any, any>>(): C;
+        render(element: ReactElement<any>, context?: any): void;
+        unmount(): void;
     }
 
     //
