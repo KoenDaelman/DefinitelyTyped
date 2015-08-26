@@ -6,8 +6,8 @@
 /// <reference path="../jointjs/jointjs.d.ts" />
 /// <reference path="../backbone/backbone.d.ts" />
 
-declare module joint{
-    module ui{
+declare module joint {
+    module ui {
         interface Handle {
             name : string;
             position : string;
@@ -25,14 +25,54 @@ declare module joint{
                 model : Backbone.Collection<joint.dia.Cell>
             });
 
-            createSelectionBox(cellView:joint.dia.CellView) : void;
-            destroySelectionBox(cellView:joint.dia.CellView) : void;
-            startSelecting(evt:any) : void;
-            cancelSelection() : void;
+            createSelectionBox(cellView:joint.dia.CellView):void;
 
-            addHandle(handle:Handle) : void;
-            removeHandle(name:string) : void;
-            changeHandle(name:string, handle:Handle) : void;
+            destroySelectionBox(cellView:joint.dia.CellView):void;
+
+            startSelecting(evt:any):void;
+
+            cancelSelection():void;
+
+            addHandle(handle:Handle):void;
+
+            removeHandle(name:string):void;
+
+            changeHandle(name:string, handle:Handle):void;
+        }
+
+        class PaperScroller extends Backbone.Model {
+
+            constructor(opt:{
+                paper : joint.dia.Paper;
+                autoResizePaper : boolean
+            });
+
+            startPanning(evt:any):void;
+
+            center():void;
+            center(x:number, y:number):void;
+
+            centerContent():void;
+
+            zoom(value:number, opt?:{
+                max:number;
+                min:number;
+                grid:any;
+                absolute:boolean;
+            }):void;
+
+            zoomToFit(opt?:{
+                padding:number;
+                preserveAspectRatio:boolean;
+                minScaleX:number;
+                minScaleY:number;
+                maxScaleX:number;
+                maxScaleY:number;
+                scaleGrid:number;
+                fittingBBox:{ x: number; y: number; width: number;height: number}
+            }):void;
+
+
         }
     }
 }
