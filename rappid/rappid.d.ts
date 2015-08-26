@@ -44,7 +44,7 @@ declare module joint {
 
             constructor(opt:{
                 paper : joint.dia.Paper;
-                autoResizePaper : boolean
+                autoResizePaper ?: boolean
             });
 
             startPanning(evt:any):void;
