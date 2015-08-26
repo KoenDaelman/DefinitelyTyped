@@ -40,7 +40,7 @@ declare module joint {
             changeHandle(name:string, handle:Handle):void;
         }
 
-        class PaperScroller extends Backbone.Model {
+        class PaperScroller extends Backbone.View {
 
             constructor(opt:{
                 paper : joint.dia.Paper;
