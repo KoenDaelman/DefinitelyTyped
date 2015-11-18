@@ -119,6 +119,9 @@ declare module joint {
         }
 
         class CellView extends Backbone.View<Cell> {
+
+            options:IOptions;
+
             getBBox():{ x: number; y: number; width: number; height: number; };
 
             highlight(el?:any):void;
