@@ -90,6 +90,7 @@ declare module joint {
             perpendicularLinks: boolean;
             elementView: ElementView;
             linkView: LinkView;
+            interactive : any;
         }
 
         class Paper extends Backbone.View<Backbone.Model> {
