@@ -49,7 +49,7 @@ declare module joint {
             toJSON():Object;
 
             remove(options?:any):void;
-++
+
             toFront():void;
 
             toBack():void;
