@@ -39,6 +39,8 @@ declare module joint {
             findModelsInArea(rect:{x : number; y: number;width:number;height:number}):Element[];
 
             getLinks():Link[];
+
+            getElements():Element[];
         }
 
         class Cell extends Backbone.Model {
