@@ -20,6 +20,8 @@ declare module joint {
 
             addCells(cells:Cell[]):void;
 
+            resetCells(cells:Cell[]):void;
+
             initialize():void;
 
             fromJSON(json:any):void;
@@ -47,7 +49,7 @@ declare module joint {
             toJSON():Object;
 
             remove(options?:any):void;
-
+++
             toFront():void;
 
             toBack():void;
@@ -82,6 +84,8 @@ declare module joint {
             defaults():IDefaults;
 
             disconnect():Link;
+
+            findView(paper:Paper):LinkView;
 
             label(idx?:number, value?:any):any;   // @todo: returns either a label under idx or Link if both idx and value were passed
             remove():void;
