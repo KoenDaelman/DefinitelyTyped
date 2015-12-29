@@ -42,7 +42,7 @@ declare module joint {
 
         class PaperScroller extends Backbone.View<Backbone.Model> {
 
-            constructor(opt:{
+            constructor(opt?:{
                 paper : joint.dia.Paper;
                 autoResizePaper ?: boolean
             });
