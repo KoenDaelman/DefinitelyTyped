@@ -48,6 +48,8 @@ declare module joint {
             });
 
             startPanning(evt:any):void;
+            pan(evt:any):void;
+            stopPanning(evt:any):void;
 
             center():void;
             center(x:number, y:number):void;
