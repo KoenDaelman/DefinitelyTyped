@@ -64,14 +64,14 @@ declare module joint {
             }):void;
 
             zoomToFit(opt?:{
-                padding:number;
-                preserveAspectRatio:boolean;
-                minScaleX:number;
-                minScaleY:number;
-                maxScaleX:number;
-                maxScaleY:number;
-                scaleGrid:number;
-                fittingBBox:{ x: number; y: number; width: number;height: number}
+                padding?:number;
+                preserveAspectRatio?:boolean;
+                minScaleX?:number;
+                minScaleY?:number;
+                maxScaleX?:number;
+                maxScaleY?:number;
+                scaleGrid?:number;
+                fittingBBox?:{ x: number; y: number; width: number;height: number}
             }):void;
 
 
