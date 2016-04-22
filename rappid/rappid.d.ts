@@ -13,6 +13,15 @@ declare module joint {
             position : string;
             icon: string;
         }
+		
+		class Snaplines extends Backbone.Model {
+            constructor(opt: {
+                paper: joint.dia.Paper;
+            });
+
+            startListening(): void;
+        }
+
 
         class SelectionView extends Backbone.Model {
             paper:joint.dia.Paper;
