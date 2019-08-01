@@ -29,6 +29,10 @@ declare namespace stripe {
             element: elements.Element,
             data: HandleCardSetupOptions
         ): Promise<SetupIntentResponse>;
+        handleCardPayment(
+            clientSecret: string,
+            options?: HandleCardPaymentWithoutElementsOptions
+        ): Promise<PaymentIntentResponse>;
 
     }
 
@@ -139,6 +143,11 @@ declare namespace stripe {
                 token: string;
             }
         };
+    }
+
+    interface PaymentIntentResponse {
+        paymentIntent?: paymentIntents.PaymentIntent;
+        error?: Error;
     }
 
     interface SetupIntentResponse {
