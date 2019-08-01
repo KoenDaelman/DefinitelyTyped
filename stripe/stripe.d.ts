@@ -31,6 +31,11 @@ declare namespace stripe {
         ): Promise<SetupIntentResponse>;
         handleCardPayment(
             clientSecret: string,
+            element: elements.Element,
+            options?: HandleCardPaymentOptions
+        ): Promise<PaymentIntentResponse>;
+        handleCardPayment(
+            clientSecret: string,
             options?: HandleCardPaymentWithoutElementsOptions
         ): Promise<PaymentIntentResponse>;
 
